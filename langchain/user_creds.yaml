@@ -1,0 +1,19 @@
+credentials:
+  usernames:
+    user1:
+      email: user1@gmail.com
+      name: user1
+      password: password1 # To be replaced with hashed password
+      roles: "Digi Locker(Admin)"
+    user2:
+      email: user2@gmail.com
+      name: user2
+      password: password2 # To be replaced with hashed password
+      roles: "UPI (Admin)"
+cookie:
+  expiry_days: 30
+  key: random_signature_key # Must be string
+  name: random_cookie_name
+preauthorized:
+  emails:
+  - melsby@gmail.com
