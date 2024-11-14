@@ -1,0 +1,12 @@
+openai
+langchain-openai
+langchain-core
+langchain-community
+sentence-transformers
+langchain-huggingface
+langchain-chroma
+faiss-cpu
+tiktoken
+pypdf
+streamlit
+streamlit-authenticator
