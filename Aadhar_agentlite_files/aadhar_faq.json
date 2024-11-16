@@ -1,0 +1,26 @@
+[
+  {
+    "question": "What is Aadhar?",
+    "answer": "Aadhar is a 12-digit unique identification number issued to all Indian residents by the Unique Identification Authority of India (UIDAI)."
+  },
+  {
+    "question": "How can I update my Aadhar details?",
+    "answer": "To update your Aadhar details, you can visit the official UIDAI website or a nearby Aadhar enrolment centre."
+  },
+  {
+    "question": "How can I check my Aadhar status?",
+    "answer": "You can check the status of your Aadhar card by visiting the official UIDAI website and entering your Aadhar number."
+  },
+  {
+    "question": "What is Aadhar linked with?",
+    "answer": "Aadhar is linked with various government services like subsidies, bank accounts, mobile phone connections, and other welfare programs."
+  },
+  {
+    "question": "Is Aadhar mandatory for mobile connection?",
+    "answer": "Yes, Aadhar is mandatory for new mobile connections as per government regulations."
+  },
+  {
+    "question": "How can I link my Aadhar with my bank account?",
+    "answer": "You can link your Aadhar with your bank account by visiting the bank branch or using the bank's online portal or mobile app. Please check with your bank for further details."
+  }
+]
