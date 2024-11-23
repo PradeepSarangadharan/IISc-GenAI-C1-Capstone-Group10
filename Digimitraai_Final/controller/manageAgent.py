@@ -25,17 +25,17 @@ embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 llm_model = ChatOpenAI(model="gpt-4o-mini", openai_api_key=OPENAI_API_KEY, temperature=0)
 
 # loading aadhaar docs for Aadhaar Agent
-aadhaar_documents = aadhaar_process_documents(governancedocs=["../docs/aadhaar_qa.pdf"])
+aadhaar_documents = aadhaar_process_documents(governancedocs=["./docs/aadhaar_qa.pdf"])
 aadhaar_db_faiss = adhaar_db_vectorstore(aadhaar_documents, embeddings)
 
 # loading digilocker docs for Digilocker Agent
-digilocker_documents = digilocker_process_documents(governancedocs=["../docs/DIGILOCKER_ASK_EXPERT.pdf" ])
+digilocker_documents = digilocker_process_documents(governancedocs=["./docs/DIGILOCKER_ASK_EXPERT.pdf" ])
 digilocker_db_faiss = digilocker_db_vectorstore(digilocker_documents,embeddings)
 
 ############# Agent : text-to-SQL approach ################
 
 # Load the CSV into a Pandas DataFrame
-grocery_csv_file = "../docs/blinkit_retail.csv"
+grocery_csv_file = "./docs/blinkit_retail.csv"
 df = pd.read_csv(grocery_csv_file)
 
 #define db file path
