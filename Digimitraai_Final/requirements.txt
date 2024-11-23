@@ -1,1 +1,12 @@
-
+openai
+langchain-openai
+langchain-core
+langchain-community
+sentence-transformers
+langchain-huggingface
+langchain-chroma
+langchain_experimental
+faiss-cpu
+tiktoken
+pypdf
+flask
