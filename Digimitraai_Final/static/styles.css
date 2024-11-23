@@ -1,0 +1,118 @@
+/* Chakra-inspired color palette */
+:root {
+    --chakra-colors-blue-500: #3182CE;
+    --chakra-colors-gray-50: #F7FAFC;
+    --chakra-colors-gray-800: #2D3748;
+    --chakra-colors-white: #FFFFFF;
+    --chakra-colors-green-500: #48BB78;
+    --chakra-font-family: 'Inter', sans-serif;
+}
+
+/* Base styles */
+body {
+    font-family: var(--chakra-font-family);
+    background-color: var(--chakra-colors-gray-50);
+    color: var(--chakra-colors-gray-800);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Container styles */
+.container {
+    width: 600px;
+    background-color: var(--chakra-colors-white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styles */
+h2 {
+    color: var(--chakra-colors-blue-500);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+/* Chatbox styles */
+#chatbox {
+    border: 1px solid var(--chakra-colors-gray-800);
+    border-radius: 8px;
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    background-color: var(--chakra-colors-gray-50);
+}
+
+/* Message styles */
+.user {
+    text-align: right;
+    color: var(--chakra-colors-blue-500);
+    margin: 8px 0;
+}
+
+/* Styling for bot message */
+.bot-message {
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+/* Styling for loading spinner */
+.loading {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Input Container */
+.input-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: #fff;
+    border-radius: 0 0 10px 10px;
+    gap: 10px;
+}
+
+textarea {
+    flex: 1;
+    resize: none;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    font-size: 0.9em;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+    border-color: #007bff;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: var(--chakra-colors-green-500);
+    color: var(--chakra-colors-white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: var(--chakra-colors-blue-500);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
