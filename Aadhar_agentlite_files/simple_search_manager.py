@@ -10,7 +10,7 @@ llm_config_dict = {
     "max_tokens": 100
 }
 
-knowledge_base_agent = KnowledgeBaseAgent("/Users/rajendranagaboina/AgentLite/example/data_repo")
+knowledge_base_agent = KnowledgeBaseAgent("/data_repo")
 llm_agent = LLMAgent(llm_config_dict)
 search_agent = SearchAgent(knowledge_base_agent, llm_agent)
 
