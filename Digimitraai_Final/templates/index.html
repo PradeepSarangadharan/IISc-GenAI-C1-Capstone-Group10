@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat box</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div>
+        <h3>Welcome, {{ username }}</h3><h5>({{ role }})</h5>
+        <a style="float:right" href="/logout">Logout</a>
+        </div>
+        <br><br>
+        <div id="role-container" style="font-size:12px"></div> <!-- Placeholder for role-based content -->
+        <br>
+        <div id="chatbox">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div class="input-container">
+            <textarea id="user-input" placeholder="Type your message..."></textarea>
+            <button id="send-button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="#fff">
+                    <path d="M2 21v-7l15-2-15-2V3l20 9Z"/>
+                </svg>
+            </button>
+            <button style="height: 40px" id="audio-button">🎤 Speak</button>
+
+        </div>
+    </div>
+
+    <script>
+        const username = "{{ username }}";  // Pass username from Flask
+        const role = "{{ role }}";  // Pass role from Flask
+        // Add role-specific UI elements
+        document.addEventListener("DOMContentLoaded", function() {
+            const roleContainer = document.getElementById("role-container");
+
+            if (role === "governance") {
+                // Add admin-specific content
+                const adminDiv = document.createElement("div");
+                adminDiv.textContent = "Welcome to Government chat support related to documents (Aadhaar, DigiLocker, UPI).";
+                adminDiv.classList.add("admin-banner");
+                roleContainer.appendChild(adminDiv);
+            } else if (role === "customersupport") {
+                // Add user-specific content
+                const userDiv = document.createElement("div");
+                userDiv.textContent = "Welcome to E-commerce chat support related to groceries.";
+                userDiv.classList.add("user-banner");
+                roleContainer.appendChild(userDiv);
+            } else {
+                // Default role content
+                const guestDiv = document.createElement("div");
+                guestDiv.textContent = "Welcome, Admin!";
+                guestDiv.classList.add("guest-banner");
+                roleContainer.appendChild(guestDiv);
+            }
+        });
+        // Speech Recognition setup
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+
+        document.getElementById("audio-button").onclick = function() {
+            recognition.start();
+        };
+
+        recognition.onresult = function(event) {
+            const userInput = event.results[0][0].transcript;
+            document.getElementById("user-input").value = userInput;
+            if (userInput == "") {
+                alert("Please enter a message.");
+                return;
+            }
+            sendMessage(userInput);
+        };
+
+        document.getElementById("send-button").onclick = function() {
+            const userInput = document.getElementById("user-input").value;
+            if (userInput == "") {
+                alert("Please enter a message.");
+                return;
+            }
+            sendMessage(userInput);
+        };
+        async function sendMessage(userInput) {
+            const msg = userInput;
+            displayMessage(userInput, "user");
+            // Show bot thinking/loading
+            const botMessageContainer = document.createElement("div");
+            botMessageContainer.classList.add("bot-message");
+            botMessageContainer.id = "loading-message";
+            const loadingSpinner = document.createElement("div");
+            loadingSpinner.classList.add("loading");
+            botMessageContainer.appendChild(loadingSpinner);
+            document.getElementById("chatbox").appendChild(botMessageContainer);
+
+            // Scroll to the bottom
+            document.getElementById("chatbox").scrollTop = document.getElementById("chatbox").scrollHeight;
+            // api call
+            const response = await fetch("http://localhost:5000/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    message: msg,
+                    username: "{{ username }}"
+                })
+            });
+            document.getElementById("user-input").value = "";
+            // Remove the loading message
+            document.getElementById("loading-message").remove();
+
+            const data = await response.json();
+            displayMessage(data.response, "bot");
+            
+        }
+
+        function displayMessage(message, sender) {
+            const chatbox = document.getElementById("chatbox");
+            const messageDiv = document.createElement("div");
+            messageDiv.className = sender;
+            messageDiv.textContent = message;
+            chatbox.appendChild(messageDiv);
+            chatbox.scrollTop = chatbox.scrollHeight; // Auto-scroll to the bottom
+        }
+        
+    </script>
+</body>
+</html>
